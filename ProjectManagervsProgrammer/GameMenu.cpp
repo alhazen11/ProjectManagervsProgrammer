@@ -74,7 +74,10 @@ void GameMenu::play_menu()
 			if (intro[1]) {
 				if (!intro[2]) {
 					al_draw_bitmap(GameMenu::dialog2, width / 2 + 40, height / 2 - 260, 0);
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer Said '' test test test test wewewewe''");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer : ");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Hey Project Manager please !! ");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "Give me some job !! :(");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I need a money !!");
 					al_draw_bitmap(GameMenu::button_dialog, width / 2 + 85, height / 2 - 80, 0);
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
 				}
@@ -95,7 +98,10 @@ void GameMenu::play_menu()
 				if (!intro[3]) {
 					al_draw_bitmap(GameMenu::dialog, width / 2 - 460, height / 2 - 260, 0);
 					al_draw_bitmap(GameMenu::button_dialog, width / 2 - 180, height / 2 - 80, 0);
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Project Manager Said '' test test test tewe ''");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Project Manager : ");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Because it's the end of the month,");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "This company dont have some job for you");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I'll give it to you at the begin of the month");
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
 				}
 				if (!al_is_event_queue_empty(GameMenu::queue)) {
@@ -113,7 +119,10 @@ void GameMenu::play_menu()
 			if (intro[3]) {
 				if (!intro[4]) {
 					al_draw_bitmap(GameMenu::dialog2, width / 2 + 40, height / 2 - 260, 0);
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer Said '' test test test test wewewewe''");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer : ");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Oh im so sad to hear that, ");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "Because it makes me unhappy");
+					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I'll destroy this company !!!! ");
 					al_draw_bitmap(GameMenu::button_dialog, width / 2 + 85, height / 2 - 80, 0);
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
 				}
@@ -134,7 +143,10 @@ void GameMenu::play_menu()
 			if (intro[4]) {
 				al_draw_bitmap(GameMenu::dialog, width / 2 - 460, height / 2 - 260, 0);
 				al_draw_bitmap(GameMenu::button_dialog, width / 2 - 180, height / 2 - 80, 0);
-				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Project Manager Said '' test test test tewe ''");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Project Manager : ");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Im so scared :(");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "But if you're serious");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "It'll not be easy !!!");
 				al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Let's begin");
 				if (!al_is_event_queue_empty(GameMenu::queue)) {
 					al_wait_for_event(GameMenu::queue, &ev);
@@ -144,6 +156,7 @@ void GameMenu::play_menu()
 						{
 							intro[0] = false;
 							begin = true;
+							GameMenu::waktu = 0;
 						}
 					}
 				}
@@ -239,7 +252,7 @@ void GameMenu::menu_init()
 		GameMenu::x2 -= 0.08;
 		GameMenu::x3 += 0.12;
 		GameMenu::x4 -= 0.12;
-		GameMenu::x5 += 0.18;
+		GameMenu::x5 += 0.3;
 	}
 
 		if (GameMenu::change[0] == true) {
