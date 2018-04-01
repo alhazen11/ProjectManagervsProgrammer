@@ -3,7 +3,7 @@
 class Player
 {
 private:
-	string Nama;
+	string Name;
 	int Score;
 	int Level;
 public:
@@ -14,6 +14,6 @@ public:
 	string get_Name();
 	int get_Score();
 	int get_Level();
-	void set_Name();
+	void set_Name(string);
 };
 

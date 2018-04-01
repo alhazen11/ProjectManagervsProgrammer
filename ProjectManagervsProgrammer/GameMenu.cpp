@@ -154,7 +154,10 @@ void GameMenu::play_menu()
 	if (begin) {
 		if (!al_is_event_queue_empty(GameMenu::queue)) {
 			al_wait_for_event(GameMenu::queue, &ev);
-			cout << ev.mouse.x << " " << ev.mouse.y;
+			if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+			{
+				cout << ev.mouse.x << " " << ev.mouse.y;
+			}
 		}
 		al_draw_bitmap(GameMenu::card, 10, 10, 0);
 		al_draw_bitmap(GameMenu::info, 960, 10, 0);

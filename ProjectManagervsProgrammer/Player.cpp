@@ -18,7 +18,7 @@ void Player::set_Score(int score)
 
 void Player::set_Level()
 {
-	Player::level += 1;
+	Player::Level += 1;
 }
 
 string Player::get_Name()
