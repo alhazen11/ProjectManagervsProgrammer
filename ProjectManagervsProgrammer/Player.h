@@ -4,20 +4,16 @@ class Player
 {
 private:
 	string Nama;
-	Score;
-	Level;
+	int Score;
+	int Level;
 public:
 	Player();
 	~Player();
-	Attribute
-		1. Nama
-		2. Score
-		3. Level
-		Behavior
-		1. set_Score
-		2. set_Level
-		3. get_Name
-		4. get_Score
-		5. set_Name
+	void set_Score(int);
+	void set_Level();
+	string get_Name();
+	int get_Score();
+	int get_Level();
+	void set_Name();
 };
 
