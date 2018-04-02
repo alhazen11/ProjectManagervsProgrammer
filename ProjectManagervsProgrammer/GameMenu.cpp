@@ -39,11 +39,24 @@ void GameMenu::init()
 	GameMenu::dialog = al_load_bitmap("img/dialogKiri.png");
 	GameMenu::dialog2 = al_load_bitmap("img/dialogKanan.png");
 	GameMenu::button_dialog = al_load_bitmap("img/next.png");
+	GameMenu::button_dialog_hover = al_load_bitmap("img/next_hover.png");
 	GameMenu::char_p[0] = al_load_bitmap("img/p.png");
 	GameMenu::char_pm[0] = al_load_bitmap("img/pm.png");
 	GameMenu::card = al_load_bitmap("img/card.png");
 	GameMenu::info = al_load_bitmap("img/info.png");
 	GameMenu::set = al_load_bitmap("img/set.png");
+	GameMenu::credit_exit = al_load_bitmap("img/close_h.png");
+	GameMenu::credit_exit_h = al_load_bitmap("img/close.png");
+	GameMenu::credits= al_load_bitmap("img/credits.png");
+	al_reserve_samples(10);
+	GameMenu::song_menu = al_load_sample("music/menu.wav");
+	GameMenu::song_field = al_load_sample("music/field.ogg");
+	song_inst = al_create_sample_instance(song_menu);
+	al_set_sample_instance_playmode(song_inst, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(song_inst,al_get_default_mixer());
+	song_inst_field = al_create_sample_instance(song_field);
+	al_set_sample_instance_playmode(song_inst_field, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(song_inst_field, al_get_default_mixer());
 
 }
 
@@ -55,6 +68,8 @@ void GameMenu::allegro_init()
 	al_install_mouse();
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_install_audio();
+	al_init_acodec_addon();
 }
 
 void GameMenu::register_sources(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_TIMER *timer)
@@ -71,29 +86,43 @@ void GameMenu::play_menu()
 	if (intro[0]) {
 		al_draw_bitmap(GameMenu::char_p[0], width / 2 + 200, height / 2 - 100, 0);
 		al_draw_bitmap(GameMenu::char_pm[0], width / 2 - 750, height / 2 - 100, 0);
-			if (intro[1]) {
-				if (!intro[2]) {
-					al_draw_bitmap(GameMenu::dialog2, width / 2 + 40, height / 2 - 260, 0);
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer : ");
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Hey Project Manager please !! ");
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "Give me some job !! :(");
-					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I need a money !!");
-					al_draw_bitmap(GameMenu::button_dialog, width / 2 + 85, height / 2 - 80, 0);
+		if (intro[1]) {
+			if (!intro[2]) {
+				al_draw_bitmap(GameMenu::dialog2, width / 2 + 40, height / 2 - 260, 0);
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 220, ALLEGRO_ALIGN_LEFT, "Programmer : ");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 190, ALLEGRO_ALIGN_LEFT, "Hey Project Manager please !! ");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "Give me some job !! :(");
+				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I need a money !!");
+				al_draw_bitmap(GameMenu::button_dialog, width / 2 + 85, height / 2 - 80, 0);
+				al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
+				if (intro_button[0]) {
+					al_draw_bitmap(GameMenu::button_dialog_hover, width / 2 + 85, height / 2 - 80, 0);
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
 				}
 				if (!al_is_event_queue_empty(GameMenu::queue)) {
 					al_wait_for_event(GameMenu::queue, &ev);
-				if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
-				{
-					if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
-					{
-						intro[2] = true;
-						intro[1] = false;
+					if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
+						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
+						{
+							GameMenu::intro_button[0] = true;
+						}
+						else {
+							GameMenu::intro_button[0] = false;
+						}
 					}
-				}
+					if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+					{
+						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
+						{
+							intro[2] = true;
+							intro[1] = false;
+							GameMenu::intro_button[0] = false;
+						}
+					}
 				}
 
 			}
+		}
 			if (intro[2]) {
 				if (!intro[3]) {
 					al_draw_bitmap(GameMenu::dialog, width / 2 - 460, height / 2 - 260, 0);
@@ -103,15 +132,29 @@ void GameMenu::play_menu()
 					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "This company dont have some job for you");
 					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I'll give it to you at the begin of the month");
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
-				}
-				if (!al_is_event_queue_empty(GameMenu::queue)) {
-					al_wait_for_event(GameMenu::queue, &ev);
-					if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
-					{
-						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 - 180 && ev.mouse.x < width / 2 - 85)
+					if (intro_button[1]) {
+						al_draw_bitmap(GameMenu::button_dialog_hover, width / 2 - 180, height / 2 - 80, 0);
+						al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
+					}
+					if (!al_is_event_queue_empty(GameMenu::queue)) {
+						al_wait_for_event(GameMenu::queue, &ev);
+						if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
+							if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 - 180 && ev.mouse.x < width / 2 - 85)
+							{
+								GameMenu::intro_button[1] = true;
+							}
+							else {
+								GameMenu::intro_button[1] = false;
+							}
+						}
+						if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 						{
-							intro[3] = true;
-							intro[2] = false;
+							if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 - 180 && ev.mouse.x < width / 2 - 85)
+							{
+								intro[3] = true;
+								intro[2] = false;
+								GameMenu::intro_button[1] = false;
+							}
 						}
 					}
 				}
@@ -125,17 +168,30 @@ void GameMenu::play_menu()
 					al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 + 70, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "I'll destroy this company !!!! ");
 					al_draw_bitmap(GameMenu::button_dialog, width / 2 + 85, height / 2 - 80, 0);
 					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
-				}
-				if (!al_is_event_queue_empty(GameMenu::queue)) {
-					al_wait_for_event(GameMenu::queue, &ev);
-					if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
-					{
-						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
+					if (intro_button[0]) {
+						al_draw_bitmap(GameMenu::button_dialog_hover, width / 2 + 85, height / 2 - 80, 0);
+						al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 + 150, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Next");
+					}
+					if (!al_is_event_queue_empty(GameMenu::queue)) {
+						al_wait_for_event(GameMenu::queue, &ev);
+						if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
+							if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
+							{
+								GameMenu::intro_button[0] = true;
+							}
+							else {
+								GameMenu::intro_button[0] = false;
+							}
+						}
+						if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 						{
-							intro[4] = true;
-							intro[3] = false;
-
-							cout << "click";
+							if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 + 85 && ev.mouse.x < width / 2 + 185)
+							{
+								intro[4] = true;
+								intro[3] = false;
+								GameMenu::intro_button[0] = false;
+								cout << "click";
+							}
 						}
 					}
 				}
@@ -148,14 +204,28 @@ void GameMenu::play_menu()
 				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 160, ALLEGRO_ALIGN_LEFT, "But if you're serious");
 				al_draw_text(GameMenu::font_small, GameMenu::black, width / 2 - 430, height / 2 - 130, ALLEGRO_ALIGN_LEFT, "It'll not be easy !!!");
 				al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Let's begin");
+				if (intro_button[1]) {
+					al_draw_bitmap(GameMenu::button_dialog_hover, width / 2 - 180, height / 2 - 80, 0);
+					al_draw_text(GameMenu::font_small, GameMenu::white, width / 2 - 115, height / 2 - 65, ALLEGRO_ALIGN_CENTRE, "Let's begin");
+				}
 				if (!al_is_event_queue_empty(GameMenu::queue)) {
 					al_wait_for_event(GameMenu::queue, &ev);
+					if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
+						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 - 180 && ev.mouse.x < width / 2 - 85)
+						{
+							GameMenu::intro_button[1] = true;
+						}
+						else {
+							GameMenu::intro_button[1] = false;
+						}
+					}
 					if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 					{
 						if (ev.mouse.y >= height / 2 - 80 && ev.mouse.y < height / 2 - 40 && ev.mouse.x >= width / 2 - 180 && ev.mouse.x < width / 2 - 85)
 						{
 							intro[0] = false;
 							begin = true;
+							GameMenu::intro_button[1] = false;
 							GameMenu::waktu = 0;
 						}
 					}
@@ -206,8 +276,58 @@ void GameMenu::load_menu()
 {
 }
 
-void GameMenu::setting_menu()
+void GameMenu::credit_menu()
 {
+	GameMenu::ev;
+	al_draw_bitmap(GameMenu::menus, width / 2 - 215, height / 2 - 250, 0);
+	al_draw_bitmap(GameMenu::credit_exit, width / 2 - 40 , height / 2 - 290, 0);
+	al_draw_text(GameMenu::font, GameMenu::white, width / 2 , height / 2 - 200, ALLEGRO_ALIGN_CENTRE, "Credits");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 160, ALLEGRO_ALIGN_CENTRE, "Programmer :");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 130, ALLEGRO_ALIGN_CENTRE, "Alzahid Muhasabah");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 100, ALLEGRO_ALIGN_CENTRE, "M. Dzaky N.");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 70, ALLEGRO_ALIGN_CENTRE, "Farhan Akbar");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 40, ALLEGRO_ALIGN_CENTRE, "Akhmal Rizkyanto");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 - 10, ALLEGRO_ALIGN_CENTRE, "Artis :");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 20, ALLEGRO_ALIGN_CENTRE, "Farhan Akbar");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 50, ALLEGRO_ALIGN_CENTRE, "Alzahid Muhasabah");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 80, ALLEGRO_ALIGN_CENTRE, "Music :");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 110, ALLEGRO_ALIGN_CENTRE, "Tales from the borderland");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 140, ALLEGRO_ALIGN_CENTRE, "ost season premiere");
+	al_draw_text(GameMenu::font_small, GameMenu::white, width / 2, height / 2 + 170, ALLEGRO_ALIGN_CENTRE, "Cuphead ost floral fury");
+
+	if (credit_ex) {
+		al_draw_bitmap(GameMenu::credit_exit_h, width / 2 - 40, height / 2 - 290, 0);
+	}
+	if (!al_is_event_queue_empty(GameMenu::queue)) {
+		al_wait_for_event(GameMenu::queue, &ev);
+		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
+			cout << ev.mouse.x;
+
+			if (ev.mouse.y >= height / 2 - 290 && ev.mouse.y < height / 2 - 210 && ev.mouse.x >= width / 2 - 40 && ev.mouse.x < width / 2 +40)
+			{
+				GameMenu::credit_ex = true;
+			}
+			else {
+				GameMenu::credit_ex = false;
+			}
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+		{
+			cout << ev.mouse.x;
+
+			if (ev.mouse.y >= height / 2 - 290 && ev.mouse.y < height / 2 - 210 && ev.mouse.x >= width / 2 - 40 && ev.mouse.x < width / 2 + 40)
+			{
+				al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 90, 0);
+				GameMenu::credit_ex = false;
+				GameMenu::play = false;
+				GameMenu::load = false;
+				GameMenu::credit = false;
+				GameMenu::quit = false;
+				GameMenu::menu = true;
+			}
+		}
+	}
+
 }
 
 void GameMenu::quit_menu()
@@ -308,6 +428,7 @@ void GameMenu::menu_init()
 
 void GameMenu::menu_display()
 {
+	al_play_sample_instance(song_inst);
 	GameMenu::waktu += 1;
 	al_draw_bitmap(GameMenu::background, 0, 0, 0);
 	al_draw_bitmap(GameMenu::aw[0], width / 2 - 515 + x_w1, height / 2 - 280, 0);
@@ -321,6 +442,13 @@ void GameMenu::menu_display()
 		al_draw_bitmap(algif_get_bitmap(GameMenu::gif[1], al_get_time()), x3, height / 2 + 255, 1);
 		al_draw_bitmap(algif_get_bitmap(GameMenu::gif[0], al_get_time()), x4, height / 2 + 255, 1);
 	}
+	if (play) {
+		al_stop_sample_instance(song_inst);
+		al_play_sample_instance(song_inst_field);
+	}
+	else {
+		al_stop_sample_instance(song_inst_field);
+	}
 	if (GameMenu::menu) {
 		al_draw_bitmap(GameMenu::menus, width / 2 - 215, height / 2 - 250, 0);
 		al_draw_bitmap(GameMenu::button, width / 2 - 180, height / 2 - 90, 0);
@@ -330,9 +458,9 @@ void GameMenu::menu_display()
 		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 220, ALLEGRO_ALIGN_CENTRE, "Project Manager");
 		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 180, ALLEGRO_ALIGN_CENTRE, "VS");
 		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 140, ALLEGRO_ALIGN_CENTRE, "Programmer");
-		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 74, ALLEGRO_ALIGN_CENTRE, "Start");
+		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 74, ALLEGRO_ALIGN_CENTRE, "New Game");
 		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 10, ALLEGRO_ALIGN_CENTRE, "Load");
-		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 86, ALLEGRO_ALIGN_CENTRE, "Setting");
+		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 86, ALLEGRO_ALIGN_CENTRE, "Credit");
 		al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 170, ALLEGRO_ALIGN_CENTRE, "Quit");
 	}
 }
@@ -347,6 +475,22 @@ void GameMenu::menu_event()
 {
 	if (GameMenu::menu) {
 		GameMenu::ev;
+		if (menu_button[0]) {
+			al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 90, 0);
+			al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 - 74, ALLEGRO_ALIGN_CENTRE, "New Game");
+		}
+		if (menu_button[1]) {
+			al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 10, 0);
+			al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 10, ALLEGRO_ALIGN_CENTRE, "Load");
+		}
+		if (menu_button[2]) {
+			al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 70, 0);
+			al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 86, ALLEGRO_ALIGN_CENTRE, "Credit");
+		}
+		if (menu_button[3]) {
+			al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 150, 0);
+			al_draw_text(GameMenu::font, GameMenu::white, width / 2, height / 2 + 170, ALLEGRO_ALIGN_CENTRE, "Quit");
+		}
 		if (!al_is_event_queue_empty(GameMenu::queue)) {
 			al_wait_for_event(GameMenu::queue, &ev);
 			if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -356,19 +500,31 @@ void GameMenu::menu_event()
 			if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
 				if (ev.mouse.y >= height / 2 - 90 && ev.mouse.y < height / 2 - 30)
 				{
-					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 90, 0);
+					GameMenu::menu_button[0] = true;
 				}
-				else if (ev.mouse.y >= height / 2 - 10 && ev.mouse.y < height / 2 + 50)
-				{
-					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 10, 0);
+				else {
+					GameMenu::menu_button[0] = false;
 				}
-				else if (ev.mouse.y >= height / 2 + 70 && ev.mouse.y < height / 2 + 130)
+				if (ev.mouse.y >= height / 2 - 10 && ev.mouse.y < height / 2 + 50)
 				{
-					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 70, 0);
+					GameMenu::menu_button[1] = true;
 				}
-				else if (ev.mouse.y >= height / 2 + 150 && ev.mouse.y < height / 2 + 210)
+				else {
+					GameMenu::menu_button[1] = false;
+				}
+				if (ev.mouse.y >= height / 2 + 70 && ev.mouse.y < height / 2 + 130)
 				{
-					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 150, 0);
+					GameMenu::menu_button[2] = true;
+				}
+				else {
+					GameMenu::menu_button[2] = false;
+				}
+				if (ev.mouse.y >= height / 2 + 150 && ev.mouse.y < height / 2 + 210)
+				{
+					GameMenu::menu_button[3] = true;
+				}
+				else {
+					GameMenu::menu_button[3] = false;
 				}
 			}
 			if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
@@ -378,7 +534,7 @@ void GameMenu::menu_event()
 					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 90, 0);
 					GameMenu::play = true;
 					GameMenu::load = false;
-					GameMenu::setting = false;
+					GameMenu::credit = false;
 					GameMenu::quit = false;
 					GameMenu::menu = false;
 					cout << "start" << endl;
@@ -388,7 +544,7 @@ void GameMenu::menu_event()
 					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 10, 0);
 					GameMenu::play = false;
 					GameMenu::load = true;
-					GameMenu::setting = false;
+					GameMenu::credit = false;
 					GameMenu::quit = false;
 					GameMenu::menu = false;
 					cout << "load" << endl;
@@ -398,7 +554,7 @@ void GameMenu::menu_event()
 					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 70, 0);
 					GameMenu::play = false;
 					GameMenu::load = false;
-					GameMenu::setting = true;
+					GameMenu::credit = true;
 					GameMenu::quit = false;
 					GameMenu::menu = false;
 					cout << "setting" << endl;
@@ -408,7 +564,7 @@ void GameMenu::menu_event()
 					al_draw_bitmap(buttonc, width / 2 - 180, height / 2 + 150, 0);
 					GameMenu::play = false;
 					GameMenu::load = false;
-					GameMenu::setting = false;
+					GameMenu::credit = false;
 					GameMenu::quit = true;
 					cout << "quit" << endl;
 				}
@@ -427,9 +583,9 @@ bool GameMenu::getLoad()
 	return GameMenu::load;
 }
 
-bool GameMenu::getSetting()
+bool GameMenu::getCredit()
 {
-	return GameMenu::setting;
+	return GameMenu::credit;
 }
 
 bool GameMenu::getQuit()
@@ -445,6 +601,11 @@ bool GameMenu::getStop()
 bool GameMenu::getMenu()
 {
 	return GameMenu::menu;
+}
+
+bool GameMenu::getBegin()
+{
+	return GameMenu::begin;
 }
 
 int GameMenu::getTime()

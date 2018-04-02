@@ -11,26 +11,79 @@ ProjectManager::~ProjectManager()
 {
 }
 
-void ProjectManager::get_Name()
+void ProjectManager::Attack()
 {
 }
 
-void ProjectManager::get_Speed()
+string ProjectManager::set_Style(string)
+{
+	return string();
+}
+
+void ProjectManager::getHit(float)
 {
 }
 
-void ProjectManager::get_Style()
+void ProjectManager::getHit(float, float)
 {
 }
 
-void ProjectManager::set_Hp()
+string ProjectManager::get_Name()
+{
+	return NULL;
+}
+
+float ProjectManager::get_Speed()
+{
+	return NULL;
+}
+
+bool ProjectManager::getDead()
+{
+	return false;
+}
+
+void ProjectManager::set_Hp(float)
 {
 }
 
-void ProjectManager::set_Dead(bool)
+void ProjectManager::isDead(bool)
 {
 }
 
-void ProjectManager::set_Cor(float, float)
+ALLEGRO_BITMAP * ProjectManager::get_Style()
 {
+	return nullptr;
+}
+
+void ProjectManager::set_Cor_x(float)
+{
+}
+
+void ProjectManager::set_Cor_y(float)
+{
+}
+
+
+void ProjectManager::display()
+{
+}
+
+void ProjectManager::set_show(int)
+{
+}
+
+int ProjectManager::get_show()
+{
+	return 0;
+}
+
+float ProjectManager::get_Cor_x()
+{
+	return 0.0f;
+}
+
+float ProjectManager::get_Cor_y()
+{
+	return 0.0f;
 }

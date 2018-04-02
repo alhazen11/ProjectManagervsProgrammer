@@ -14,6 +14,7 @@ protected:
 	float speed_attac;
 	float pos_x;
 	float pos_y;
+	int show;
 public:
 	Programmer();
 	~Programmer();
@@ -31,5 +32,6 @@ public:
 	virtual void setPosY(float);
 	virtual float getPosX();
 	virtual float getPosY();
+	virtual void display() = 0;
 };
 

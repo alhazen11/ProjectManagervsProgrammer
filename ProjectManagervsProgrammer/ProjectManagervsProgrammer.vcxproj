@@ -170,6 +170,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="algif.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullet_buku.h" />
+    <ClInclude Include="Bullet_bulpen.h" />
+    <ClInclude Include="Bullet_kertas.h" />
     <ClInclude Include="GameField.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="Player.h" />
@@ -189,6 +193,10 @@
   <ItemGroup>
     <ClCompile Include="algif.c" />
     <ClCompile Include="bitmap.c" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullet_buku.cpp" />
+    <ClCompile Include="Bullet_bulpen.cpp" />
+    <ClCompile Include="Bullet_kertas.cpp" />
     <ClCompile Include="GameField.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="gif.c" />

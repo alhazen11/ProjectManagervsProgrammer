@@ -1,1 +1,28 @@
-﻿  ProjectManagervsProgrammer.vcxproj -> D:\ProjectManagervsProgrammer\x64\Debug\ProjectManagervsProgrammer.exe
+﻿  ProjectManager.cpp
+  P_Mouse.cpp
+  PM_Pulpen.cpp
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_pulpen.cpp(7): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_pulpen.cpp(8): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_pulpen.cpp(9): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_pulpen.cpp(10): warning C4553: '==': operator has no effect; did you intend '='?
+  PM_Komputer.cpp
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_komputer.cpp(7): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_komputer.cpp(8): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_komputer.cpp(9): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_komputer.cpp(10): warning C4553: '==': operator has no effect; did you intend '='?
+  PM_Kertas.cpp
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_kertas.cpp(7): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_kertas.cpp(8): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_kertas.cpp(9): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_kertas.cpp(10): warning C4553: '==': operator has no effect; did you intend '='?
+  PM_Buku.cpp
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_buku.cpp(7): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_buku.cpp(8): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_buku.cpp(9): warning C4553: '==': operator has no effect; did you intend '='?
+d:\projectmanagervsprogrammer\projectmanagervsprogrammer\pm_buku.cpp(10): warning C4553: '==': operator has no effect; did you intend '='?
+  Generating Code...
+  Compiling...
+  ProjectManagervsProgrammer.cpp
+  GameField.cpp
+  Generating Code...
+  ProjectManagervsProgrammer.vcxproj -> D:\ProjectManagervsProgrammer\x64\Debug\ProjectManagervsProgrammer.exe

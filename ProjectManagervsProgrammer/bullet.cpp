@@ -1,12 +1,12 @@
-#include "bullet.h"
+#include "Bullet.h"
 
 
 
-bullet::bullet()
+Bullet::Bullet()
 {
 }
 
 
-bullet::~bullet()
+Bullet::~Bullet()
 {
 }

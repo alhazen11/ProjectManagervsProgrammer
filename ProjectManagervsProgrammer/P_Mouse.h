@@ -6,7 +6,6 @@ class P_Mouse :
 public:
 	P_Mouse();
 	~P_Mouse();
-	//void throwed(); this particular thing too
 	void walk();
 	void attack();
 	void getHit(float);

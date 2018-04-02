@@ -21,22 +21,34 @@ private:
 	ALLEGRO_BITMAP  *dialog;
 	ALLEGRO_BITMAP  *dialog2;
 	ALLEGRO_BITMAP  *button_dialog;
+	ALLEGRO_BITMAP  *button_dialog_hover;
 	ALLEGRO_BITMAP  *char_p[5];
 	ALLEGRO_BITMAP  *char_pm[5];
 	ALLEGRO_BITMAP  *card;
 	ALLEGRO_BITMAP  *info;
 	ALLEGRO_BITMAP  *set;
+	ALLEGRO_BITMAP  *credits;
+	ALLEGRO_BITMAP  *credit_exit;
+	ALLEGRO_BITMAP  *credit_exit_h;
+	ALLEGRO_SAMPLE *song_menu;
+	ALLEGRO_SAMPLE *song_field;
+	ALLEGRO_SAMPLE_INSTANCE *song_inst;
+	ALLEGRO_SAMPLE_INSTANCE *song_inst_field;
+
 
 	int waktu=0;
+	bool menu_button[4]= { false,false, false, false};
+	bool intro_button[2] = { false,false};
 	bool keysP1[5] = { false,false, false, false, false };
 	bool gameover = false;
 	bool menu = true;
 	bool stop = true;
 	bool play = false;
 	bool load = false;
-	bool setting = false;
+	bool credit = false;
 	bool quit = false;
 	bool begin = false;
+	bool credit_ex=false;
 	bool intro[5] = { true,true,false,false,false };
 	float x = -30, x2 = -30, x3 = -30, x4 = -30, x5 = -30;
 	bool change[4] = { true,true ,true ,true };
@@ -47,6 +59,7 @@ private:
 	ALGIF_ANIMATION *gif[3];
 	ALLEGRO_EVENT ev;
 
+
 public:
 	GameMenu();
 	~GameMenu();
@@ -55,7 +68,7 @@ public:
 	void register_sources(ALLEGRO_EVENT_QUEUE *, ALLEGRO_TIMER *);
 	void play_menu();
 	void load_menu();
-	void setting_menu();
+	void credit_menu();
 	void quit_menu();
 	void menu_cek();
 	void menu_init();
@@ -64,10 +77,11 @@ public:
 	void menu_event();
 	bool getPlay();
 	bool getLoad();
-	bool getSetting();
+	bool getCredit();
 	bool getQuit();
 	bool getStop();
 	bool getMenu();
+	bool getBegin();
 	int getTime();
 	void setStop();
 	ALLEGRO_BITMAP  get_dialog();
