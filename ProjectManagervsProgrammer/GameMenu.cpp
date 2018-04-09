@@ -190,7 +190,6 @@ void GameMenu::play_menu()
 								intro[4] = true;
 								intro[3] = false;
 								GameMenu::intro_button[0] = false;
-								cout << "click";
 							}
 						}
 					}
@@ -217,7 +216,7 @@ void GameMenu::play_menu()
 						}
 						else {
 							GameMenu::intro_button[1] = false;
-						}
+						}  
 					}
 					if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 					{
@@ -301,8 +300,6 @@ void GameMenu::credit_menu()
 	if (!al_is_event_queue_empty(GameMenu::queue)) {
 		al_wait_for_event(GameMenu::queue, &ev);
 		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
-			cout << ev.mouse.x;
-
 			if (ev.mouse.y >= height / 2 - 290 && ev.mouse.y < height / 2 - 210 && ev.mouse.x >= width / 2 - 40 && ev.mouse.x < width / 2 +40)
 			{
 				GameMenu::credit_ex = true;
@@ -313,8 +310,6 @@ void GameMenu::credit_menu()
 		}
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 		{
-			cout << ev.mouse.x;
-
 			if (ev.mouse.y >= height / 2 - 290 && ev.mouse.y < height / 2 - 210 && ev.mouse.x >= width / 2 - 40 && ev.mouse.x < width / 2 + 40)
 			{
 				al_draw_bitmap(buttonc, width / 2 - 180, height / 2 - 90, 0);
