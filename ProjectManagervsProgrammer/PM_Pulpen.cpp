@@ -8,20 +8,23 @@ PM_Pulpen::PM_Pulpen()
 	PM_Pulpen::Attack_time = 150;
 	PM_Pulpen::Speed_attack = 0.3;
 	PM_Pulpen::Hp = 400;
+	PM_Pulpen::pulpen_g = algif_load_animation("img/pm_walk.gif");
+	PM_Pulpen::style = algif_load_animation("img/pm_walk.gif");
 }
 
 
 PM_Pulpen::~PM_Pulpen()
 {
+
 }
 
 void PM_Pulpen::Attack()
 {
 }
 
-string PM_Pulpen::set_Style(string)
+void PM_Pulpen::set_Style(ALGIF_ANIMATION *style)
 {
-	return string();
+	PM_Pulpen::style = style;
 }
 
 void PM_Pulpen::getHit(float firePower)
@@ -82,13 +85,14 @@ void PM_Pulpen::isDead(bool dead)
 	this->Dead = dead;
 }
 
-ALLEGRO_BITMAP * PM_Pulpen::get_Style()
+ALGIF_ANIMATION * PM_Pulpen::get_Style()
 {
-	return nullptr;
+	return PM_Pulpen::style;
 }
 
 void PM_Pulpen::display()
 {
+	al_draw_bitmap(algif_get_bitmap(PM_Pulpen::style, al_get_time()), PM_Pulpen::cor_x-32, PM_Pulpen::cor_y - 28, 0);
 }
 
 void PM_Pulpen::set_show(int show)

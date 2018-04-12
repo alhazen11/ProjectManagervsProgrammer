@@ -3,7 +3,7 @@
 #define width 1180
 #define height 640
 #define FPS 60.0
-#define SPEED 6
+#define SPEED 14
 
 class GameMenu
 {

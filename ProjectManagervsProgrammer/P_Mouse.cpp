@@ -2,8 +2,15 @@
 #include "P_Mouse.h"
 
 
-P_Mouse::P_Mouse()
+P_Mouse::P_Mouse(int shows)
 {
+	this->hp = 550;
+	this->attackDamage = 160;
+	this->armor = 15;
+	this->speed_attac = 0.15;
+	this->speed_walk = 0.15;
+	this->show = shows;
+
 }
 
 
@@ -24,9 +31,10 @@ void P_Mouse::getHit(float firePower)
 	hp = hp - firePower; // undetermined armor const
 }
 
+void P_Mouse::display() {}
 
 //setter
-void P_Mouse::setStyle(string style)
+void P_Mouse::setStyle(ALGIF_ANIMATION *style)
 {
 	this->style = style;
 }
@@ -51,14 +59,26 @@ void P_Mouse::setPosY(float pos_y)
 	this->pos_y = pos_y;
 }
 
+
+void P_Mouse::setShow(int show)
+{
+	this->show = show;
+}
+
+
 //getter
 string P_Mouse::getName() { return nama; }
 
 
 float P_Mouse::getSpeed() { return speed; }
 
+bool P_Mouse::getBool()
+{
+	return P_Mouse::dead;
+}
 
-string P_Mouse::getStyle() { return style; }
+
+ALGIF_ANIMATION *P_Mouse::getStyle() { return style; }
 
 
 bool P_Mouse::cekDead() { return dead; }
@@ -68,3 +88,6 @@ float P_Mouse::getPosX() { return pos_x; }
 
 
 float P_Mouse::getPosY() { return pos_y; }
+
+
+int P_Mouse::getShow() { return show; }

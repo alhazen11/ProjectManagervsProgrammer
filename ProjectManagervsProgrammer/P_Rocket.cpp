@@ -2,8 +2,15 @@
 #include "P_Rocket.h"
 
 
-P_Rocket::P_Rocket()
+P_Rocket::P_Rocket(int shows)
 {
+	this->hp = 600;
+	this->attackDamage = 165;
+	this->armor = 10;
+	this->speed_attac = 0.2;
+	this->speed_walk = 0.17;
+	this->show = shows;
+
 }
 
 
@@ -24,9 +31,10 @@ void P_Rocket::getHit(float firePower)
 	hp = hp - firePower; // undetermined armor const
 }
 
+void P_Rocket::display() {}
 
 //setter
-void P_Rocket::setStyle(string style)
+void P_Rocket::setStyle(ALGIF_ANIMATION *style)
 {
 	this->style = style;
 }
@@ -51,14 +59,26 @@ void P_Rocket::setPosY(float pos_y)
 	this->pos_y = pos_y;
 }
 
+
+void P_Rocket::setShow(int show)
+{
+	this->show = show;
+}
+
+
 //getter
 string P_Rocket::getName() { return nama; }
 
 
 float P_Rocket::getSpeed() { return speed; }
 
+bool P_Rocket::getBool()
+{
+	return P_Rocket::dead;
+}
 
-string P_Rocket::getStyle() { return style; }
+
+ALGIF_ANIMATION *P_Rocket::getStyle() { return style; }
 
 
 bool P_Rocket::cekDead() { return dead; }
@@ -68,3 +88,6 @@ float P_Rocket::getPosX() { return pos_x; }
 
 
 float P_Rocket::getPosY() { return pos_y; }
+
+
+int P_Rocket::getShow() { return show; }

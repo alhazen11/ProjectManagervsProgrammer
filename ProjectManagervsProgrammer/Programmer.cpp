@@ -11,8 +11,10 @@ Programmer::~Programmer()
 {
 }
 
+
+
 //setter
-void Programmer::setStyle(string style)
+void Programmer::setStyle(ALGIF_ANIMATION *style)
 {
 	this->style = style;
 }
@@ -37,14 +39,26 @@ void Programmer::setPosY(float pos_y)
 	this->pos_y = pos_y;
 }
 
+
+void Programmer::setShow(int show) 
+{
+	this->show = show;
+}
+
+
 //getter
 string Programmer::getName() { return nama; }
 
 
 float Programmer::getSpeed() { return speed; }
 
+bool Programmer::getDead()
+{
+	return false;
+}
 
-string Programmer::getStyle() { return style; }
+
+ALGIF_ANIMATION *Programmer::getStyle() { return style; }
 
 
 bool Programmer::cekDead() { return dead; }
@@ -54,3 +68,6 @@ float Programmer::getPosX() { return pos_x; }
 
 
 float Programmer::getPosY() { return pos_y; }
+
+
+int Programmer::getShow() { return show; }

@@ -26,7 +26,10 @@ class GameField
 		Player *Players;
 		int Score;
 		int Level;
-		float Time;
+		int i[13];
+		int Times;
+		float mouse_y;
+		float mouse_x;
 		bool win=false;
 		bool gameover = false;
 		bool drag = false;
@@ -48,9 +51,10 @@ public:
 	void Mouse_drag();
 	int get_Score();
 	void Proses();
-	void Dispay();
-	ProjectManager* get_Card();
+	void Display();
 	int get_Level();
+	int get_Times();
+	void set_Times(int);
 	void Lose();
 	void Finish();
 	void Init(int);

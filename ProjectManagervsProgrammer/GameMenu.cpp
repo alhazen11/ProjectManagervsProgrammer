@@ -82,7 +82,9 @@ void GameMenu::register_sources(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_TIMER *timer
 
 void GameMenu::play_menu()
 {
-	GameMenu::ev;
+	if (!begin) {
+		GameMenu::ev;
+	}
 	if (intro[0]) {
 		al_draw_bitmap(GameMenu::char_p[0], width / 2 + 200, height / 2 - 100, 0);
 		al_draw_bitmap(GameMenu::char_pm[0], width / 2 - 750, height / 2 - 100, 0);
@@ -234,13 +236,6 @@ void GameMenu::play_menu()
 		
 	}
 	if (begin) {
-		if (!al_is_event_queue_empty(GameMenu::queue)) {
-			al_wait_for_event(GameMenu::queue, &ev);
-			if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
-			{
-				cout << ev.mouse.x << " " << ev.mouse.y;
-			}
-		}
 		al_draw_bitmap(GameMenu::card, 10, 10, 0);
 		al_draw_bitmap(GameMenu::info, 960, 10, 0);
 		al_draw_bitmap(GameMenu::set, 40, 625, 0);

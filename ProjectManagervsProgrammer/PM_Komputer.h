@@ -6,7 +6,7 @@ class PM_Komputer :
 public:
 	PM_Komputer();
 	~PM_Komputer();
-	string set_Style(string) = 0;
+	void set_Style(ALGIF_ANIMATION *) = 0;
 	void getHit(float);
 	void getHit(float, float);
 	string get_Name() = 0;
@@ -14,7 +14,7 @@ public:
 	bool getDead() = 0;
 	void set_Hp(float) = 0;
 	void isDead(bool) = 0;
-	ALLEGRO_BITMAP *get_Style() = 0;
+	ALGIF_ANIMATION *get_Style() = 0;
 	void display();
 	void set_show(int);
 	int get_show();

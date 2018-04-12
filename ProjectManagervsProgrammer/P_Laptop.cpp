@@ -2,8 +2,15 @@
 #include "P_Laptop.h"
 
 
-P_Laptop::P_Laptop()
+P_Laptop::P_Laptop(int shows)
 {
+	this->hp = 500;
+	this->attackDamage = 155;
+	this->armor = 20;
+	this->speed_attac = 0.13;
+	this->speed_walk = 0.15;
+	this->show = shows;
+
 }
 
 
@@ -24,9 +31,11 @@ void P_Laptop::getHit(float firePower)
 	hp = hp - firePower; // undetermined armor const
 }
 
+void P_Laptop::display() {
+}
 
 //setter
-void P_Laptop::setStyle(string style)
+void P_Laptop::setStyle(ALGIF_ANIMATION *style)
 {
 	this->style = style;
 }
@@ -51,6 +60,18 @@ void P_Laptop::setPosY(float pos_y)
 	this->pos_y = pos_y;
 }
 
+
+void P_Laptop::setShow(int show)
+{
+	this->show = show;
+}
+
+bool P_Laptop::getBool()
+{
+	return P_Laptop::dead;
+}
+
+
 //getter
 string P_Laptop::getName() { return nama; }
 
@@ -58,7 +79,7 @@ string P_Laptop::getName() { return nama; }
 float P_Laptop::getSpeed() { return speed; }
 
 
-string P_Laptop::getStyle() { return style; }
+ALGIF_ANIMATION *P_Laptop::getStyle() { return style; }
 
 
 bool P_Laptop::cekDead() { return dead; }
@@ -68,3 +89,6 @@ float P_Laptop::getPosX() { return pos_x; }
 
 
 float P_Laptop::getPosY() { return pos_y; }
+
+
+int P_Laptop::getShow() { return show; }

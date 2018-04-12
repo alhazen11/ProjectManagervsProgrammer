@@ -19,9 +19,9 @@ void PM_Buku::Attack()
 {
 }
 
-string PM_Buku::set_Style(string)
+void PM_Buku::set_Style(ALGIF_ANIMATION *style)
 {
-	return string();
+	PM_Buku::style = style;
 }
 
 void PM_Buku::getHit(float firePower)
@@ -83,7 +83,7 @@ void PM_Buku::isDead(bool dead)
 	this->Dead = dead;
 }
 
-ALLEGRO_BITMAP * PM_Buku::get_Style()
+ALGIF_ANIMATION * PM_Buku::get_Style()
 {
 	return nullptr;
 }

@@ -20,9 +20,9 @@ void PM_Kertas::Attack()
 {
 }
 
-string PM_Kertas::set_Style(string)
+void PM_Kertas::set_Style(ALGIF_ANIMATION *style)
 {
-	return string();
+	PM_Kertas::style = style;
 }
 
 void PM_Kertas::getHit(float firePower)
@@ -83,7 +83,7 @@ void PM_Kertas::isDead(bool dead)
 	this->Dead = dead;
 }
 
-ALLEGRO_BITMAP * PM_Kertas::get_Style()
+ALGIF_ANIMATION * PM_Kertas::get_Style()
 {
 	return nullptr;
 }

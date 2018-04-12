@@ -15,10 +15,6 @@ void ProjectManager::Attack()
 {
 }
 
-string ProjectManager::set_Style(string)
-{
-	return string();
-}
 
 void ProjectManager::getHit(float)
 {
@@ -43,6 +39,7 @@ bool ProjectManager::getDead()
 	return false;
 }
 
+
 void ProjectManager::set_Hp(float)
 {
 }
@@ -51,10 +48,6 @@ void ProjectManager::isDead(bool)
 {
 }
 
-ALLEGRO_BITMAP * ProjectManager::get_Style()
-{
-	return nullptr;
-}
 
 void ProjectManager::set_Cor_x(float)
 {
@@ -65,9 +58,6 @@ void ProjectManager::set_Cor_y(float)
 }
 
 
-void ProjectManager::display()
-{
-}
 
 void ProjectManager::set_show(int)
 {

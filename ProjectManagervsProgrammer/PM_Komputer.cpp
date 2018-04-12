@@ -7,7 +7,7 @@ PM_Komputer::PM_Komputer()
 	PM_Komputer::Armor = 55;
 	PM_Komputer::Attack_time = 0;
 	PM_Komputer::Speed_attack = 0;
-	PM_Komputer::Hp = 500;
+	PM_Komputer::Hp = 1000;
 }
 
 
@@ -16,9 +16,9 @@ PM_Komputer::~PM_Komputer()
 }
 
 
-string PM_Komputer::set_Style(string)
+void PM_Komputer::set_Style(ALGIF_ANIMATION *style)
 {
-	return string();
+	PM_Komputer::style = style;
 }
 
 void PM_Komputer::getHit(float firePower)
@@ -79,7 +79,7 @@ void PM_Komputer::isDead(bool dead)
 	this->Dead = dead;
 }
 
-ALLEGRO_BITMAP * PM_Komputer::get_Style()
+ALGIF_ANIMATION * PM_Komputer::get_Style()
 {
 	return nullptr;
 }
