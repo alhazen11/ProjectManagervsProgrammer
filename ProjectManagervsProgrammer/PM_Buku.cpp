@@ -19,9 +19,8 @@ void PM_Buku::Attack()
 {
 }
 
-void PM_Buku::set_Style(ALGIF_ANIMATION *style)
+void PM_Buku::set_Style(int tipe)
 {
-	PM_Buku::style = style;
 }
 
 void PM_Buku::getHit(float firePower)

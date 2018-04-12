@@ -16,6 +16,8 @@
 class GameField
 {
 	private:
+		ALLEGRO_COLOR white;
+		ALLEGRO_FONT *font;
 		vector<ProjectManager*> slot_card;
 		vector<Programmer*> slot_p_line1;
 		vector<Programmer*> slot_p_line2;

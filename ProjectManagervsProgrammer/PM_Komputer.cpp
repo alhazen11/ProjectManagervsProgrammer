@@ -16,9 +16,8 @@ PM_Komputer::~PM_Komputer()
 }
 
 
-void PM_Komputer::set_Style(ALGIF_ANIMATION *style)
+void PM_Komputer::set_Style(int tipe)
 {
-	PM_Komputer::style = style;
 }
 
 void PM_Komputer::getHit(float firePower)

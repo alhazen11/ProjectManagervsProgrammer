@@ -18,7 +18,7 @@ public:
 	ProjectManager();
 	~ProjectManager();
 	virtual void Attack() = 0;
-	virtual void set_Style(ALGIF_ANIMATION *) = 0;
+	virtual void set_Style(int) = 0;
 	virtual void getHit(float);
 	virtual void getHit(float, float);
 	virtual string get_Name();

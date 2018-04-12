@@ -20,9 +20,8 @@ void PM_Kertas::Attack()
 {
 }
 
-void PM_Kertas::set_Style(ALGIF_ANIMATION *style)
+void PM_Kertas::set_Style(int tipe)
 {
-	PM_Kertas::style = style;
 }
 
 void PM_Kertas::getHit(float firePower)

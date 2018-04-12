@@ -5,13 +5,17 @@ class PM_Pulpen :
 {
 private:
 	float Armor_pearcing;
+	//bikin ini
 	ALGIF_ANIMATION *pulpen_g;
+	ALGIF_ANIMATION *pulpen_g_a;
+	ALGIF_ANIMATION *pulpen_g_d;
 
 public:
 	PM_Pulpen();
 	~PM_Pulpen();
 	void Attack();
-	void set_Style(ALGIF_ANIMATION *);
+	//bikin ini disetiap class PM
+	void set_Style(int);
 	void getHit(float);
 	void getHit(float, float);
 	string get_Name();

@@ -6,7 +6,7 @@ class PM_Komputer :
 public:
 	PM_Komputer();
 	~PM_Komputer();
-	void set_Style(ALGIF_ANIMATION *) = 0;
+	void set_Style(int) = 0;
 	void getHit(float);
 	void getHit(float, float);
 	string get_Name() = 0;

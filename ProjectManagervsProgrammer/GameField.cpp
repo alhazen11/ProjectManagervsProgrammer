@@ -3,10 +3,15 @@
 
 GameField::GameField(Player *play)
 {
-	GameField::Players = play;
-	GameField::Level = play->get_Level();
-	GameField::Score = play->get_Score();
-	
+	this->Players = play;
+	this->Level = play->get_Level();
+	this->Score = play->get_Score();
+	al_init();
+	al_init_font_addon();
+	al_init_ttf_addon();
+	white = al_map_rgb(240, 255, 250);
+	font = al_load_font("Font/font.ttf", 24, 0);
+
 }
 
 GameField::~GameField()
@@ -91,9 +96,6 @@ void GameField::Mouse_drag()
 					if (ev.mouse.x >= 530 && ev.mouse.x < 595 && ev.mouse.y >= 20 && ev.mouse.y < 105)
 					{
 						mouse_s = slot_card[i[0]];
-						slot_card[i[0]]->set_Cor_x(558);
-						slot_card[i[0]]->set_Cor_y(60);
-						slot_card[i[0]]->display();
 						drag = true;
 						slot_card.erase(slot_card.begin() + i[0]);
 
@@ -102,9 +104,6 @@ void GameField::Mouse_drag()
 				else if (i[0] == 8) {
 					if (ev.mouse.x >= 602 && ev.mouse.x < 667 && ev.mouse.y >= 20 && ev.mouse.y < 105) {
 						mouse_s = slot_card[i[0]];
-						slot_card[i[0]]->set_Cor_x(632);
-						slot_card[i[0]]->set_Cor_y(60);
-						slot_card[i[0]]->display();
 						drag = true;
 						slot_card.erase(slot_card.begin() + i[0]);
 					}
@@ -169,6 +168,8 @@ void GameField::Proses()
 
 void GameField::Display()
 {
+	al_draw_textf(GameField::font, GameField::white, 980, 30, ALLEGRO_ALIGN_LEFT, "Stage : %d", GameField::Level);
+	al_draw_textf(GameField::font, GameField::white, 980, 80, ALLEGRO_ALIGN_LEFT, "Score : %d", GameField::Score);
 	for (i[7] = 0; i[7] < slot_p_line1.size(); i[7]++) {
 		slot_p_line1[i[7]]->display();
 	}
@@ -267,6 +268,7 @@ void GameField::Init(int level)
 	switch (level)
 	{
 	case 1:
+		//ini samakan dengan waktu kemunculan programmer 100=1detik bikin sampai level 6
 		GameField::slot_p_line1.push_back(laptop = new P_Laptop(1000));
 		GameField::slot_p_line2.push_back(laptop = new P_Laptop(1000));
 		GameField::slot_p_line2.push_back(laptop = new P_Laptop(200));

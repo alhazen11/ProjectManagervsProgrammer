@@ -8,8 +8,11 @@ PM_Pulpen::PM_Pulpen()
 	PM_Pulpen::Attack_time = 150;
 	PM_Pulpen::Speed_attack = 0.3;
 	PM_Pulpen::Hp = 400;
-	PM_Pulpen::pulpen_g = algif_load_animation("img/pm_walk.gif");
-	PM_Pulpen::style = algif_load_animation("img/pm_walk.gif");
+	//ini 
+	PM_Pulpen::pulpen_g = algif_load_animation("img/pm_pen_s.gif");
+	PM_Pulpen::pulpen_g_d = algif_load_animation("img/pm_dead.gif");
+	PM_Pulpen::pulpen_g_a = algif_load_animation("img/pm_pen_a.gif");
+	PM_Pulpen::style = PM_Pulpen::pulpen_g;
 }
 
 
@@ -21,10 +24,21 @@ PM_Pulpen::~PM_Pulpen()
 void PM_Pulpen::Attack()
 {
 }
-
-void PM_Pulpen::set_Style(ALGIF_ANIMATION *style)
+//ini 
+void PM_Pulpen::set_Style(int tipe)
 {
-	PM_Pulpen::style = style;
+	switch (tipe)
+	{
+	case 1:
+		PM_Pulpen::style = PM_Pulpen::pulpen_g;;
+		break;
+	case 2:
+		PM_Pulpen::style = PM_Pulpen::pulpen_g_a;;
+		break;
+	case 3:
+		PM_Pulpen::style = PM_Pulpen::pulpen_g_d;;
+		break;
+	}
 }
 
 void PM_Pulpen::getHit(float firePower)
